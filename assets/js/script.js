@@ -1,25 +1,30 @@
 window.addEventListener('load', news)
 
 async function news(){
-    const newsURL= 'https://newsapi.org/v2/everything?q=tesla&from=2023-12-19&sortBy=publishedAt&apiKey=9e83f60031e144e280e3a7de9566ffbe'
+    const newsURL='https://dummyjson.com/products'
 
     try{
         const newsFetch= await fetch(newsURL)
         const newsFinsh= await newsFetch.json()
         console.log(newsFinsh)
-        // const newsDoccc=document.querySelector('.news')
+        const newsDoccc=document.querySelector('.news')
         for(let i=0;i<9;i++){
             document.querySelector('.news').innerHTML+=`
-            <div class="  col-12 col-md-6 col-lg-4">
-            <div class="card m-2">
-             <img src=${newsFinsh.articles[i].urlToImage} class="card-img-top"  height="300px">
-            <div class="card-body">
-              <h5 class="card-title">${newsFinsh.articles[i].title}</h5>
-              <p class="card-text">${newsFinsh.articles[i].description}</p>
-              <a href=${newsFinsh.articles[i].url} class="btn btn-primary">Go somewhere</a>
+            <div class="col-12 col-md-6 col-lg-4">
+            <div class="cardd border-0 rounded border border-secondary p-3 mb-4">
+              <div class="card-imgs d-flex justify-content-center align-items-center">
+                <img
+                  src=${newsFinsh.products[i].images[0]} style="height:300px "
+                  alt=""
+                />
+              </div>
+              <div class="card-bottom">
+                <div class="card-title "><h3> ${newsFinsh.products[i].title}</h3></div>
+                <div class="card-text"> ${newsFinsh.products[i].description}</div>
+                <button class="card-date btn btn-light my-3 "> ${newsFinsh.products[i].price}$</button>
+              </div>
             </div>
-            </div>
-            </div>`
+          </div>`
    
         }
         }
